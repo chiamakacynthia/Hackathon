@@ -1,11 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import styled from "styled-components"
-import img from "./imgage/img.jpeg"
-import img1 from "./imgage/img1.jpeg"
-import img2 from "./imgage/img2.jpg"
-import img3 from "./imgage/img3.jpg"
 import pool from "./imgage/pool.jpg"
-import Header1 from "./Olorunda/Header/Header"
 import {app} from "../base"
 import {Link} from "react-router-dom"
 
@@ -46,15 +41,14 @@ const Rooms = () => {
     data?.map((props, i)=>(
       <Link to={`hotel/${props.id}`} >
         <Card1 key={i}>
-    <Sub>
-        <Img  src={props.hotelName}/>
+    {/* <Sub> */}
+        <Img  src={props.showImage}/>
        <Text>
-       <Name>{props.name}</Name>
-        <Location>{props.location}</Location>
-        <Category>{props.category}</Category>
-        
+       <Name>Name: <span>{props.hotelName}</span></Name>
+        <Location>Location: <span> {props.location}</span></Location>
+        <Desc>Detail: <span> {props.hotelDesc}</span></Desc>
        </Text>
-    </Sub>
+    {/* </Sub> */}
 </Card1>
       </Link>
     ))
@@ -72,28 +66,9 @@ const Rooms = () => {
 
 export default Rooms
 
-const Button = styled.button`
-width: 150px;
-height: 40px;
-border-radius:3px;
-color: white;
-background-color:#004080;
-justify-content:center;
-align-items: center;
-display: flex;
-margin-top: 10px;
-outline: none;
-border: none;
-&:hover{
-    cursor: pointer;
-    transform: scale all(0.9)
-}
-`
-
 const Room = styled.div`
 display: flex;
 flex-wrap: wrap;
-/* flex-direction: column; */
 align-items: center;
 width: 95%;
 justify-content:space-around;
@@ -107,41 +82,16 @@ margin-top: 30px;
 font-family: Georgia, 'Times New Roman', Times, serif;
 margin-left: 30px;
 `
-const Card = styled.div`
-width: 280px;
-height: 400px;
-margin-top: 20px;
-border-radius: 5px;
-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-:after{
-        content: "";
-        top: 0;
-        width: 100%;
-        /* height: 406px; */
-        background-color: rgba(0, 0, 0, 0.718);
-        position: absolute;
-        z-index: -2;
-    }
-&:hover{
-  transition: all 350ms;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-@media screen and (max-width: 1224px){
-    margin-top: 70px;
-}
-`
 const Card1 = styled.div`
 width: 280px;
-height: 400px;
+min-height: 450px;
 margin-top: 20px;
 border-radius: 5px;
-
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 :after{
         content: "";
         top: 0;
         width: 100%;
-        /* height: 406px; */
         background-color: rgba(0, 0, 0, 0.718);
         position: absolute;
         z-index: -2;
@@ -154,22 +104,8 @@ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-top: 70px;
 }
 `
-const Sub = styled.div``
-const Faci = styled.div`
-display: flex;
-flex-wrap: wrap;
-width: 95%;
-justify-content:space-around;
-`
 
-const Image = styled.img`
-width: 100%;
-height: 300px;
-background-color:blue;
-object-fit:cover;
-position: relative;
-border-radius: 5px;
-`
+
 const Img = styled.img`
 width: 100%;
 height: 250px;
@@ -185,38 +121,44 @@ font-weight:bold;
 font-family: Georgia, 'Times New Roman', Times, serif;
 margin-left: 20px;
 margin-bottom: 5px;
+
+span{
+    font-size:14px;
+    font-weight: normal;
+}
 `
 const Text = styled.div`
-position: absolute;
-width: 280px;
+width: 90%;
 padding-top: 10px;
 color: black;
 display: flex;
-justify-content: center;
-align-items: center;
 flex-direction: column;
 `
+
 const Desc = styled.div`
 color: black;
 font-size:13px;
 font-weight:bold;
 font-family: Georgia, 'Times New Roman', Times, serif;
 margin-left: 20px;
-`
-const Category = styled.div`
-color: black;
-font-size:13px;
-font-weight:bold;
-font-family: Georgia, 'Times New Roman', Times, serif;
-margin-left: 20px;
+
+span{
+    font-size:14px;
+    font-weight: normal;
+}
 `
 const Name = styled.div`
 color: black;
-font-size:20px;
+font-size:15px;
 font-weight:bold;
 margin-bottom: 5px;
 font-family: Georgia, 'Times New Roman', Times, serif;
 margin-left: 20px;
+
+span{
+    font-size:14px;
+    font-weight: normal;
+}
 `
 
 const Header = styled.div`
@@ -253,10 +195,10 @@ const Wrapper = styled.div`
 `
 const Container = styled.div`
     width: 100%;
-    /* height: 100%; */
-    min-height: 120vh;
+    min-height: 120%;
     display: flex;
     flex-direction: column;
+    margin-bottom:30px;
 `
 
 const Title = styled.div`

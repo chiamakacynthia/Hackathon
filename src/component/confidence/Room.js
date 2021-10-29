@@ -1,18 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import styled from "styled-components"
-import img from "./img/img.jpeg"
-import img1 from "./img/img1.jpeg"
-import img2 from "./img/img2.jpg"
-import img3 from "./img/img3.jpg"
 import pool from "./img/pool.jpg"
-import nature from "./img/nature.jpg"
-import gym from "./img/gym.jpg"
-import hall from "./img/hall.jpg"
-import Header1 from "../Olorunda/Header/Header"
 import {useParams} from "react-router-dom"
 import {app} from "../../base"
 import {useDispatch} from "react-redux"
-import {addBookings} from "../Ebuka/ReduxGlobal"
+import {addBooking} from "../Ebuka/ReduxGlobal"
 
 const Rooms = () => {
     const dispatch = useDispatch()
@@ -57,12 +49,15 @@ const Rooms = () => {
          
 <Card1 key ={i}>
     <Sub>
-        <Img  src={img3}/>
+        <Img  src={props.roomImage}/>
        <Text>
-       <Name>Mini Sweet</Name>
-        <Price>N50,000/day</Price>
-        <Category>Luxury</Category>
-        <Button>Book Now</Button>
+       <Name>Room: <span>{props.roomNo}</span></Name>
+        <Price>Price: <span> {props.price}</span></Price>
+        <Category>Category: <span>{props.category}</span></Category>
+        <Category>Max-No: <span>{props.maxPerson}</span></Category>
+        <BH><Button
+         onClick={() => {dispatch(addBooking(props))}}
+        >Book Now</Button></BH>
        </Text>
     </Sub>
 </Card1>
@@ -73,46 +68,22 @@ const Rooms = () => {
 
 <Head>Our Hotel Facilities</Head>
 <Faci>
-<Card>
+{
+    data.map((props, k)=>(
+        <Card key={k}>
     <Sub>
-        <Image  src={hall}/>
+        <Image  src={props.facilityImage}/>
        <Text>
-       <Name>Event Hall</Name>
-        <Price>N150,000</Price>
-        <Desc>Standard Event Center</Desc>
+       <Name>Name: <span>{props.facilityName}</span></Name>
+        <Price>Price: <span> {props.price}</span></Price>
+        <Category>Detail: <span>{props.facilityDesc}</span></Category>
        </Text>
     </Sub>
 </Card>
-<Card>
-    <Sub>
-        <Image  src={gym}/>
-       <Text>
-       <Name>Gym</Name>
-        <Price>N20,000/month</Price>
-        <Desc>Standard Gym facilities</Desc>
-       </Text>
-    </Sub>
-</Card>
-<Card>
-    <Sub>
-        <Image  src={pool}/>
-       <Text>
-       <Name>Luxury Pool</Name>
-        <Price>N5,000</Price>
-        <Desc>luxury pool standard</Desc>
-       </Text>
-    </Sub>
-</Card>
-<Card>
-    
-        <Image  src={nature}/>
-       <Text>
-       <Name>Nature House</Name>
-        <Price>N50,000/Night</Price>
-        <Desc>our nature house get away facility is surrounded by all things nature</Desc>
-       </Text>
-  
-</Card>
+
+    ))
+}
+
 </Faci>
 
             </Wrapper>
@@ -128,7 +99,7 @@ width: 150px;
 height: 40px;
 border-radius:3px;
 color: white;
-background-color:#004080;
+background-color:#387EFF;
 justify-content:center;
 align-items: center;
 display: flex;
@@ -139,6 +110,14 @@ border: none;
     cursor: pointer;
     transform: scale all(0.9)
 }
+`
+
+const BH = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+margin-top: 10px;
+margin-left: 10px;
 `
 
 const Room = styled.div`
@@ -160,7 +139,7 @@ margin-left: 30px;
 `
 const Card = styled.div`
 width: 280px;
-height: 400px;
+min-height: 450px;
 margin-top: 20px;
 border-radius: 5px;
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -183,7 +162,8 @@ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `
 const Card1 = styled.div`
 width: 280px;
-height: 400px;
+height: 420px;
+min-height:450px;
 margin-top: 20px;
 border-radius: 5px;
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -235,15 +215,16 @@ font-weight:bold;
 font-family: Georgia, 'Times New Roman', Times, serif;
 margin-left: 20px;
 margin-bottom: 5px;
+span{
+    font-size:14px;
+    font-weight: normal;
+}
 `
 const Text = styled.div`
-position: absolute;
-width: 280px;
+width: 90%;
 padding-top: 10px;
 color: black;
 display: flex;
-justify-content: center;
-align-items: center;
 flex-direction: column;
 `
 const Desc = styled.div`
@@ -252,6 +233,10 @@ font-size:13px;
 font-weight:bold;
 font-family: Georgia, 'Times New Roman', Times, serif;
 margin-left: 20px;
+span{
+    font-size:14px;
+    font-weight: normal;
+}
 `
 const Category = styled.div`
 color: black;
@@ -259,14 +244,22 @@ font-size:13px;
 font-weight:bold;
 font-family: Georgia, 'Times New Roman', Times, serif;
 margin-left: 20px;
+span{
+    font-size:14px;
+    font-weight: normal;
+}
 `
 const Name = styled.div`
 color: black;
-font-size:20px;
+font-size:15px;
 font-weight:bold;
 margin-bottom: 5px;
 font-family: Georgia, 'Times New Roman', Times, serif;
 margin-left: 20px;
+span{
+    font-size:14px;
+    font-weight: normal;
+}
 `
 
 const Header = styled.div`
@@ -303,8 +296,8 @@ const Wrapper = styled.div`
 `
 const Container = styled.div`
     width: 100%;
-    /* height: 100%; */
-    min-height: 120vh;
+    min-height: 120%;
+    margin-bottom:30px;
     display: flex;
     flex-direction: column;
 `

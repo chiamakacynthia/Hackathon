@@ -1,6 +1,7 @@
 import React from "react";
 import { Fragment } from "react";
 import styled from "styled-components";
+import img from "./Olorunda/Images/LOGO.png"
 import {
     FaGlobe,FaFacebookSquare,FaYoutubeSquare,FaInstagram, FaTwitter, FaLinkedin
 } from "react-icons/fa";
@@ -54,13 +55,14 @@ const Footer = () => {
             <Lan>English</Lan>
             <Lan>French</Lan>
           </SocialLink>
+          <Logo src={img} />
         </Tab>
       </FooterTab>
       <FooterTab>
         <Tab>
-          <Logo src="logo3.png" />
+         
           <Span>
-Copyright © 2021 HotelBook.com All rights reserved 😊| {date} All right reserved </Span>
+codelab©2021 HotelBook.com 😊| {date}</Span>
           <SocialLink>
             <a>
               <Icon />
@@ -129,12 +131,12 @@ const Container = styled.div`
   width: 100%;
   height: 25vh;
   display: grid;
-  margin-top:50px;
+  /* margin-top:10px; */
   grid-template-columns: repeat(5, minmax(0, 1fr));
 color: white;
 
   @media screen and (max-width: 886px){
-  height: 500px;
+  min-height: 330px;
     display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -169,7 +171,7 @@ const Section = styled.div`
   width: 100px;
   font-size: 13px;
   font-weight: normal;
-  opacity: 0.5;
+  opacity: 0.9;
   margin-top: 7px;
   color: white;
   &:hover {
@@ -188,7 +190,7 @@ const FooterTab = styled.div`
   align-items: center;
   color: white;
  /* padding-left: 100px; */
-  border-top: 1px solid gray;
+  border-top: 1px solid white;
 
   @media screen and (max-width: 886px){
  
@@ -198,7 +200,7 @@ const FooterTab = styled.div`
 `;
 
 const Tab = styled.div`
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -207,9 +209,9 @@ const Tab = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 150px;
+  width: 60px;
   height: 60px;
-  margin-left: 40px;
+  margin-left: 15px;
   object-fit: contain;
 `;
 

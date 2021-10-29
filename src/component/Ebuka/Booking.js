@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 // import img1 from 'images/back.jpg'
 import background from './back.jpg'
+import {Link} from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import {addHotel, addBooking, changeDays, removeBooking, costState} from "./ReduxGlobal"
 
@@ -49,7 +50,7 @@ const Booking = () => {
                             <ButtonPP onClick={()  => {
                                 dispatch(removeBooking(props))
                             }}>Cancel</ButtonPP>
-                            <ButtonC>View</ButtonC>
+                            <ButtonC to="/pay">Check Out</ButtonC>
                         </ButtonPart>
                 </Card>
                     ))
@@ -62,17 +63,17 @@ const Booking = () => {
 export default Booking
 
 const Category1 = styled.div`
-     width: 100%;
+     width: 80%;
     justify-content: space-between;
     display: flex;
-    margin: 10px;
+    margin: 5px;
     font-weight: bold;
 `
 const PricePlace = styled.div`
-      width: 100%;
+      width: 80%;
     justify-content: space-between;
     display: flex;
-    margin: 10px;
+    margin: 5px;
     font-weight: bold;
 `
 const Work2 = styled.div`
@@ -82,16 +83,16 @@ const Work = styled.div`
     margin-left: 10px;
 `
 const RoomPlace = styled.div`
-    width: 100%;
+    width: 80%;
     justify-content: space-between;
     display: flex;
-    margin: 10px;
+    margin: 5px;
     font-weight: bold;
 `
-const ButtonC = styled.div`
+const ButtonC = styled(Link)`
     width: 150px;
     height: 40px;
-    background-color: red;
+    background-color: #387EFF;
     color: white;
     margin: 0px 5px;
     border-radius: 5px;
@@ -102,7 +103,10 @@ const ButtonC = styled.div`
 
     :hover{
         cursor: pointer;
-        transform: scale(1.03)
+        transition: all 350ms ease-in-out;
+       background-color:white;
+       color: blue;
+       border: 2px solid blue;
 
     }
 
@@ -111,17 +115,19 @@ const ButtonC = styled.div`
     }
 
     @media screen and (max-width: 700px) and (min-width: 320px){
-        font-size: 10px;
-        width: 80px; 
-        height: 30px;       
+        font-size: 15px;
+        /* font-weight:bold; */
+        width: 100px; 
+        height: 40px;       
     }
 `
 const ButtonPP = styled.div`
     width: 150px;
     height: 40px;
-    background-color: #004080;
+    background-color: red;
     color: white;
     border-radius: 5px;
+    font-size: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -130,7 +136,10 @@ const ButtonPP = styled.div`
 
     :hover{
         cursor: pointer;
-        transform: scale(1.03)
+       transition: all 350ms ease-in-out;
+       background-color:white;
+       color: red;
+       border: 2px solid red;
 
     }
 
@@ -140,9 +149,10 @@ const ButtonPP = styled.div`
     }
 
     @media screen and (max-width: 475px) and (min-width: 320px){
-        font-size: 10px;
+        font-size: 15px;
+        font-weight:bold;
         width: 100px;
-        height: 30px;   
+        height: 40px;   
         margin:0px 5px;
     }
 `
@@ -157,61 +167,7 @@ const ButtonPart = styled.div`
         margin-bottom: 10px;
     }
 `
-const Location = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 0px 15px;
-    color: white;
-    font-weight: bold;
-`
-const Category = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 0px 15px;
-    color: white;
-    font-weight: bold;
 
-    span{
-        color: black;
-    }
-`
-const Price = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 0px 15px;
-    color: blue;
-    font-weight: bold;
-    color: white;
-
-    span{
-        color: black;
-    }
-`
-const LastContainer = styled.div`
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0px;
-
-    span{
-        color: black;
-    }
-
-    @media screen and (max-width: 475px) and (min-width: 320px){
-        font-size: 13px;
-    }
-`
-const Line = styled.div`
-    width: 90%;
-    height: 1px;
-    background-color: rgba(0,0,0,0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 20px;
-`
 const Add = styled.div`
      margin: 0px 15px;
      width: 30px;
@@ -219,11 +175,11 @@ const Add = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #004080;
+    background-color: lightgreen;
     border-radius: 50%;
-    font-size: 15px;
+    font-size: 20px;
     color: white;
-    font-weight: bold;
+    font-weight: bolder;
     cursor: pointer;
 
     @media screen and (max-width: 475px) and (min-width: 320px){
@@ -261,39 +217,7 @@ const Days = styled.div`
     justify-content: center;
     margin: 25px 0px;
 `
-const Dec = styled.div`
-    /* background-color: blue; */
-    font-size: 15px;
-    font-weight: bold;
-`
-const RoomNO = styled.div`
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    
-    span{
-        margin: 0px 10px;
-        color: white;
-    }
-`
-const MobileTop = styled.div`
-    display: none;
-    @media (min-width: 320px) and (max-width: 768px){
-        display: flex;
-        width: 30vw;
-        height: 30vh;
-        margin-top: -200px; 
-        justify-content: center;
-    }
-`
-const MobileCard = styled.div` 
-    display: none;
-    @media screen and (min-width: 320px) and (max-width: 475px){
-        display: flex;
-        margin-top: 150px;
-        margin-bottom: -30px;
-    }
-`
+
 const Container = styled.div`
     width: 100%;
     min-height: 100vh;
@@ -307,6 +231,9 @@ const Container = styled.div`
     background-size: cover;
     background-blend-mode: overlay;
     position: relative;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
 
     :after{
         content: " ";
@@ -325,122 +252,53 @@ const Wrapper = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column; 
     justify-content: center;
     align-items: center;
 
     @media screen and (max-width: 475px) and (min-width: 320px){
-        
+          flex-direction: column;   
     }
 `
-const Card = styled.div`
-    width: 320px;
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba( 255, 255, 255);
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    /* backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px ); */
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
 
-    @media screen and (max-width: 1440px) and (min-width: 320px){
-        height: auto;
-        width: 250px;
-    }
-
-    @media screen and (max-width: 700px) and (min-width: 320px){
-        display: flex;
-        justify-content: center;
-        width: 70%;
-        
-    }
-`
 const ImageTop = styled.img`
-        width: 100%;
-        height: 50%;
-        background-color: black;
-        border-radius: 10px 10px 0px 0px;
-        object-fit: cover;
-    /* img{
-        width: 100%;
-        height: 100%;
-    } */
+width: 280px;
+height: 250px;
+background-color:blue;
+object-fit:cover;
+border-radius: 5px;
+
+
 
     @media screen and (max-width: 700px) and (min-width: 320px){
-       width: 90%;
+       width: 100%;
        height: 50%;
         
     }
 `
-const RightPart = styled.div`
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
 
-    input{
-        width: 80%;
-        height: 30px;
-        border-radius: 3px;
-        margin-top: 30px;
-        margin-left: 40px;
-        border: none;
-        padding: 10px;
 
-        @media screen and (max-width: 475px) and (min-width: 320px){
-            width: 90%;
-            margin-left: 0;
-        }
-    }
-    @media screen and (max-width: 475px) and (min-width: 320px){
+
+const Card = styled.div`
+width: 280px;
+min-height:450px;
+margin-top: 20px;
+margin: 20px;
+border-radius: 5px;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+background-color: white;
+:after{
+        content: "";
+        top: 0;
         width: 100%;
-        align-items: center;
+        background-color: rgba(0, 0, 0, 0.718);
+        position: absolute;
+        z-index: -2;
     }
-`
-const BigWord = styled.div`
-    font-size: 26px;
-    font-family: poppins;
-    font-weight: 500;
-    text-align: center;
-    color: white;
-`
-const SmallWordS = styled.div`
-    font-size: 15px;
-    font-family: poppins;
-    text-align: center;
-    color: white;
-    width: 80%;
-    margin-left: 30px;
-
-    @media screen and (max-width: 475px) and (min-width: 320px){
-        display: none;
-    }
-`
-const Button = styled.div`
-    width: 150px;
-    height: 40px;
-    background-color: #004080;
-    color: white;
-    margin-left: 130px;
-    margin-top: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: scale(1.0);
-
-    :hover{
-        cursor: pointer;
-        transform: scale(1.1)
-
-    }
-
-    @media screen and (max-width: 475px) and (min-width: 320px){
-        margin-left: 0;
-        margin-top: 20px;
-    }
+&:hover{
+  transition: all 350ms;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+@media screen and (max-width: 1224px){
+    margin-top: 70px;
+}
 `

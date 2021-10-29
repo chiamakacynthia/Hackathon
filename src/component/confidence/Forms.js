@@ -1,9 +1,48 @@
 import React from 'react'
 import styled from "styled-components"
-import background from "./pool.jpg"
+import background from "./img/pool.jpg"
 import {AiOutlineClose} from "react-icons/ai"
+import { usePaystackPayment } from "react-paystack";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+    removeBooking,
+    changeDays,
+    addBooking,
+    totalState,
+  } from "../Ebuka/ReduxGlobal";
 
 const Forms = () => {
+    const bookingState = useSelector((state) => state.myReducer.bookings);
+    const totalCostState = useSelector((state) => state.myReducer.tatalRoomCost);
+    const totalRoomState = useSelector((state) => state.myReducer.totalRoomDays);
+
+    const [total, setTotal] = React.useState(totalCostState);
+
+    console.log(total);
+  const dispatch = useDispatch();
+  const hist = useHistory();
+
+    const config = {
+        reference: new Date().getTime().toString(),
+        email: "user@example.com",
+        amount: totalCostState * 100,
+         publicKey: "pk_test_d632bf4b9aa1e74745eb158cec8034961dc13b18",
+        // publicKey: "pk_live_2732df7378e84dbe0013bb9fd7f00faad438e244",
+      };
+
+      const onSuccess = (reference) => {
+        hist.push("/");
+        console.log(reference);
+      };
+    
+      const onClose = () => {
+        const say = "This Transition wasn't successful";
+        console.log(say);
+      };
+    
+      const initializePayment = usePaystackPayment(config);
+
     return (
         <Container>
             <Wrapper>
@@ -19,12 +58,16 @@ const Forms = () => {
                                 </Cancel>
                                 <InputContainer>
                                         <Inputs placeholder="Enter your Name"/>
-                                        <Inputs placeholder="Next of kin Phone Number"/>
                                         <Inputs placeholder="Enter Phone Number"/>
-                                        <Inputs placeholder="Enter your Next of Kin Name"/>
+                                        <Inputs placeholder="Next of kin Phone Name"/>
+                                        <Inputs placeholder="Enter your Next of Kin contact"/>
                                 </InputContainer>
                                 <ButtonHolder>
-                                    <Button>Pay now</Button>
+                                    <Button
+                                     onClick={() => {
+                                        initializePayment(onSuccess, onClose);
+                                      }}
+                                    >Pay now</Button>
                                 </ButtonHolder>
                             </FormItems>
                         </Form>
@@ -39,6 +82,14 @@ export default Forms
 const CloseIcon = styled(AiOutlineClose)`
 font-size: 25px;
 color: white;
+
+&:hover{
+    cursor: pointer;
+        transition: all 350ms ease-in-out;
+       background-color:white;
+       color: red;
+}
+
 `
 
 
@@ -50,14 +101,19 @@ justify-content: center;
 align-items: center;
 color: white;
 font-weight: bold;
-background-color: blue;
+background-color:  #387EFF;
 font-size: 18px;
 transform: scale(1);
 cursor: pointer;
 transition: all 350ms;
 border-radius: 4px;
 :hover{
-    transform: scale(1.03);
+    cursor: pointer;
+        transition: all 350ms ease-in-out;
+       background-color:white;
+       color: #387EFF;
+       border: 2px solid #387EFF;
+
 }
 `
 const ButtonHolder = styled.div`
@@ -72,10 +128,10 @@ margin-bottom: 40px;
 `
 const Inputs = styled.input`
 width: 93%;
-height: 35px;
+height: 40px;
 border-radius: 5px;
-border: solid black 2px;
-padding-left: 12px;
+border: solid #387EFF 2px;
+padding: 12px;
 margin: 15px 0;
 @media screen and (max-width: 350px){
     margin: 8px 0;
@@ -86,17 +142,18 @@ const InputContainer = styled.div`
 width: 100%;
 display: flex;
 flex-direction:column;
+align-items:center;
 margin-bottom: 30px;
 @media screen and (max-width: 350px){
     margin-bottom: 20px;
 }
 `
-const XIcon = styled.div``
+
 const CancelIcon = styled.div`
 width: 35px;
 height: 35px;
 border-radius: 50%;
-background-color: blue;
+background-color:  red;
 margin-bottom: 30px;
 font-size: 8px;
 color: white;
@@ -107,7 +164,12 @@ transform: scale(1);
 transition: all 350ms;
 cursor: pointer;
 :hover{
-    transform: scale(1.02);
+    cursor: pointer;
+        transition: all 350ms ease-in-out;
+       background-color:white;
+       color: red;
+       border: 2px solid red;
+
 }
 `
 

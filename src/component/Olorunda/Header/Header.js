@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import img from "../Images/logo3.png"
 import { AiOutlineHome, AiFillBook } from "react-icons/ai";
 import { RiHotelFill } from "react-icons/ri";
 import {Link} from "react-router-dom"
@@ -8,7 +9,7 @@ const Header = () => {
   return (
     <Container>
       <Wrapper>
-        <Logo>Logo</Logo>
+        <Logo src={img}/>
         <NavDiv>
         <Nav to = "/">
             <Icon>
@@ -30,12 +31,12 @@ const Header = () => {
           </Nav>
         </NavDiv>
         <UserDiv>
-        <Nav to="/signUp">
+        {/* <Nav to="/signUp">
             <Icon>
               
             </Icon>
             <span>Login</span>
-          </Nav>
+          </Nav> */}
         </UserDiv>
       </Wrapper>
     </Container>
@@ -63,9 +64,10 @@ const Wrapper = styled.div`
   
 `;
 
-const Logo = styled.div`
-  font-weight: bold;
-  font-size: larger;
+const Logo = styled.img`
+width: 50px;
+height: 50px;
+object-fit: contain;
 `;
 const NavDiv = styled.div`
   display: flex;
