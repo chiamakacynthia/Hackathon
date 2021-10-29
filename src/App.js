@@ -1,13 +1,18 @@
 import React from 'react'
-import Home from "./component/Home"
+import Home from "./component/Olorunda/Home/Home"
 import {BrowserRouter, Route, Switch} from "react-router-dom"
+import Rooms from './component/confidence/Room'
 
 const App = () => {
   return (
     <BrowserRouter>
-<Switch>
-  <Route exact path="/" component={Home}/>
-</Switch>
+     <Switch>
+      <Route exact path="/" component={Home}/>
+      <Route exact path="/booking" component={Rooms}/>
+      {/* <Route exact path="/hotel" component={Hotel}/> */}
+      {/* <Route exact path="/register" component={Register}/> */}
+
+     </Switch>
     </BrowserRouter>
   )
 }
