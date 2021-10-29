@@ -22,7 +22,7 @@ const Header = () => {
             </Icon>
             <span>Booking</span>
           </Nav>
-          <Nav>
+          <Nav to="/hotel">
             <Icon>
               <RiHotelFill />
             </Icon>

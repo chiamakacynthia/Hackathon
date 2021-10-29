@@ -171,7 +171,7 @@ width: 280px;
 height: 400px;
 margin-top: 20px;
 border-radius: 5px;
-box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 :after{
         content: "";
         top: 0;
@@ -194,7 +194,7 @@ width: 280px;
 height: 400px;
 margin-top: 20px;
 border-radius: 5px;
-box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 :after{
         content: "";
         top: 0;
