@@ -29,7 +29,14 @@ const Header = () => {
             <span>Hotels</span>
           </Nav>
         </NavDiv>
-        <UserDiv>User</UserDiv>
+        <UserDiv>
+        <Nav to="/signUp">
+            <Icon>
+              
+            </Icon>
+            <span>Login</span>
+          </Nav>
+        </UserDiv>
       </Wrapper>
     </Container>
   );
@@ -45,12 +52,15 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  
 `;
 const Wrapper = styled.div`
   width: 85%;
   /* background-color: blanchedalmond; */
   display: flex;
   justify-content: space-between;
+ 
+  
 `;
 
 const Logo = styled.div`

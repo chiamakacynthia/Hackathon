@@ -14,7 +14,7 @@ const CardMain = () => {
           developed for mobile
         </HotelDesc>
         <PriceDiv>$122.34</PriceDiv>
-        <CardBtnDiv>Add To Cart</CardBtnDiv>
+        <CardBtnDiv>View All Rooms</CardBtnDiv>
       </SubCard>
     </CardMainDiv>
   );
@@ -39,6 +39,10 @@ const CardMainDiv = styled.div`
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+
+  @media screen and (max-width: 800px) {
+    margin: 12px 0;
+  }
 `;
 const SubCard = styled.div`
   width: 255px;

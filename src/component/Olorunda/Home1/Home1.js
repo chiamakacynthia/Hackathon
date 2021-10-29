@@ -6,14 +6,17 @@ import Bounce from "react-reveal/Bounce";
 const Home1 = () => {
   return (
     <Container>
-      <Wrapper>
-        <Bounce bottom>
-          <CardMain />
-          <CardMain />
-          <CardMain />
-          <CardMain />
-        </Bounce>
-      </Wrapper>
+      <PreWrapper>
+        <BestTell>Special Offer</BestTell>
+        <Wrapper>
+          <Bounce bottom>
+            <CardMain />
+            <CardMain />
+            <CardMain />
+            <CardMain />
+          </Bounce>
+        </Wrapper>
+      </PreWrapper>
     </Container>
   );
 };
@@ -28,10 +31,27 @@ const Container = styled.div`
   align-items: center;
   margin-bottom: 50px;
 `;
-const Wrapper = styled.div`
+
+const PreWrapper = styled.div`
   width: 85%;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  /* align-items: center; */
+  align-items: center;
+
+  @media screen and (max-width: 800px) {
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const BestTell = styled.div`
+  margin-bottom: 20px;
+  font-size: 25px;
 `;

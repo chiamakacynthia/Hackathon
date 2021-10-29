@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import styled from "styled-components"
 import img from "./imgage/img.jpeg"
 import img1 from "./imgage/img1.jpeg"
@@ -6,12 +6,32 @@ import img2 from "./imgage/img2.jpg"
 import img3 from "./imgage/img3.jpg"
 import pool from "./imgage/pool.jpg"
 import Header1 from "./Olorunda/Header/Header"
+import {app} from "../base"
+import {Link} from "react-router-dom"
+
 
 
 const Rooms = () => {
+    const[data, setData] = useState([])
+
+    const getData = async ()=>{
+    await app.firestore().collection("hotel").onSnapshot(snapshot=>{
+    const item =[]
+    snapshot.forEach(doc=>{
+        item.push({...doc.data(), id:doc.id})
+    })
+    setData(item)
+})
+    }
+
+    useEffect(()=>{
+        getData()
+        console.log(data)
+    },[])
+
     return (
         <div>
-            <Header1/>       
+                 
         <Container >
             <Wrapper>
             <Header>
@@ -22,53 +42,25 @@ const Rooms = () => {
 <Head>Verified Hotels</Head>
 <Room>
  
-<Card1>
+{
+    data?.map((props, i)=>(
+      <Link to={`hotel/${props.id}`} >
+        <Card1 key={i}>
     <Sub>
-        <Img  src={img}/>
+        <Img  src={props.hotelName}/>
        <Text>
-       <Name>Cariton Hotel</Name>
-        <Location>Ajegunle</Location>
-        <Category>standard</Category>
+       <Name>{props.name}</Name>
+        <Location>{props.location}</Location>
+        <Category>{props.category}</Category>
         
        </Text>
     </Sub>
 </Card1>
+      </Link>
+    ))
+}
  
-<Card1>
-    <Sub>
-        <Img  src={img1}/>
-       <Text>
-       <Name>And One</Name>
-        <Location>Ajegunle</Location>
-        <Category>standard</Category>
-        
-       </Text>
-    </Sub>
-</Card1>
- 
-<Card1>
-    <Sub>
-        <Img  src={img2}/>
-       <Text>
-       <Name>J5 Hotel</Name>
-        <Location>Ajegunle</Location>
-        <Category>standard</Category>
-        
-       </Text>
-    </Sub>
-</Card1>
- 
-<Card1>
-    <Sub>
-        <Img  src={img3}/>
-       <Text>
-       <Name>Bana Hotel and suit</Name>
-        <Location>Ajegunle</Location>
-        <Category>standard</Category>
-        
-       </Text>
-    </Sub>
-</Card1>
+
 </Room>
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import styled from "styled-components"
 import img from "./img/img.jpeg"
 import img1 from "./img/img1.jpeg"
@@ -9,12 +9,34 @@ import nature from "./img/nature.jpg"
 import gym from "./img/gym.jpg"
 import hall from "./img/hall.jpg"
 import Header1 from "../Olorunda/Header/Header"
-
+import {useParams} from "react-router-dom"
+import {app} from "../../base"
+import {useDispatch} from "react-redux"
+import {addBookings} from "../Ebuka/ReduxGlobal"
 
 const Rooms = () => {
+    const dispatch = useDispatch()
+    const {id} = useParams()
+    const[data, setData] = useState([])
+
+    const getData = async ()=>{
+    await app.firestore().collection("hotel")
+    .doc(id).collection("room")
+   .onSnapshot(snapshot=>{
+    const item =[]
+    snapshot.forEach(doc=>{
+        item.push({...doc.data(), id:doc.id})
+    })
+    setData(item)
+})
+    }
+
+    useEffect(()=>{
+        getData(id)
+    },[])
     return (
         <div>
-            <Header1/>
+            
 
        
         <Container >
@@ -30,43 +52,10 @@ const Rooms = () => {
 <Head>Our Ranked Rooms</Head>
 <Room>
  
-<Card1>
-    <Sub>
-        <Img  src={img}/>
-       <Text>
-       <Name>Mini Sweet</Name>
-        <Price>N50,000/day</Price>
-        <Category>Luxury</Category>
-        <Button>Book Now</Button>
-       </Text>
-    </Sub>
-</Card1>
- 
-<Card1>
-    <Sub>
-        <Img  src={img1}/>
-       <Text>
-       <Name>Mini Sweet</Name>
-        <Price>N50,000/day</Price>
-        <Category>Luxury</Category>
-        <Button>Book Now</Button>
-       </Text>
-    </Sub>
-</Card1>
- 
-<Card1>
-    <Sub>
-        <Img  src={img2}/>
-       <Text>
-       <Name>Mini Sweet</Name>
-        <Price>N50,000/day</Price>
-        <Category>Luxury</Category>
-        <Button>Book Now</Button>
-       </Text>
-    </Sub>
-</Card1>
- 
-<Card1>
+{
+    data.map((props,i)=>(
+         
+<Card1 key ={i}>
     <Sub>
         <Img  src={img3}/>
        <Text>
@@ -77,6 +66,9 @@ const Rooms = () => {
        </Text>
     </Sub>
 </Card1>
+    ))
+}
+
 </Room>
 
 <Head>Our Hotel Facilities</Head>
