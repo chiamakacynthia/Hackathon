@@ -5,6 +5,7 @@ import { app } from "../../base";
 import firebase from "firebase";
 import { AuthContext } from "./AuthState";
 import { v4 as uuid } from "uuid";
+import { borderRadius } from "@mui/system";
 
 const HostHotel = () => {
   const { currentUser } = useContext(AuthContext);
@@ -142,11 +143,13 @@ const HostHotel = () => {
   return (
     <Container>
       <Wrapper>
+      
         <Card>
           <LeftPart>
             <img src={showImage} />
           </LeftPart>
           <RightPart>
+          Admin Register
             <BigWord>
               {toggle === toggle2 ? "Register Rooms" : " Register Facilities"}
             </BigWord>
@@ -157,17 +160,66 @@ const HostHotel = () => {
             {toggle === toggle2 ? (
               <ToggleRoom>
                 <HoldLabel>
-                  <input type="file" id="bg" onChange={uploadFacilityImage} />
-                  <Label htmlFor="bg">Upload Image</Label>
+                  <Input type="file" id="bg" onChange={uploadFacilityImage} />
+                  <Label htmlFor="bg">upload Image</Label>
                 </HoldLabel>
-                <input
+                <Input style={{
+                  width: "250px", 
+                  height: "40px",
+                  border: "1px solid #387EFF",
+                  borderRadius:"5px"
+                }}
                   value={roomNo}
                   onChange={(e) => {
                     setRoomNo(e.target.value);
                   }}
                   placeholder="Enter Room No"
                 />
-                <select
+               
+                <Input style={{
+                  width: "250px", 
+                  height: "40px",
+                  border: "1px solid #387EFF",
+                  borderRadius:"5px"
+                }}
+                  value={roomDesc}
+                  onChange={(e) => {
+                    setRoomDesc(e.target.value);
+                  }}
+                  placeholder="Enter Description"
+                />
+                <Input style={{
+                  width: "250px", 
+                  height: "40px",
+                  border: "1px solid #387EFF",
+                  borderRadius:"5px"
+                }}
+                  value={maxPerson}
+                  onChange={(e) => {
+                    setMaxPerson(e.target.value);
+                  }}
+                  type="Number"
+                  placeholder="Max No of Person"
+                />
+                <Input style={{
+                  width: "250px", 
+                  height: "40px",
+                  border: "1px solid #387EFF",
+                  borderRadius:"5px"
+                }}
+                  value={price}
+                  onChange={(e) => {
+                    setPrice(e.target.value);
+                  }}
+                  type="Number"
+                  placeholder="Price"
+                />
+                 <select style={{
+                  width: "250px", 
+                  height: "40px",
+                  border: "1px solid #387EFF",
+                  borderRadius:"5px"
+                }}
                   value={category}
                   onChange={(e) => {
                     setCategory(e.target.value);
@@ -179,40 +231,34 @@ const HostHotel = () => {
                   <option value="Standard">Standard</option>
                   <option value="Luxury">Luxury</option>
                 </select>
-                <input
-                  value={roomDesc}
-                  onChange={(e) => {
-                    setRoomDesc(e.target.value);
-                  }}
-                  placeholder="Enter Description"
-                />
-                <input
-                  value={maxPerson}
-                  onChange={(e) => {
-                    setMaxPerson(e.target.value);
-                  }}
-                  type="Number"
-                  placeholder="Max No of Person"
-                />
-                <input
-                  value={price}
-                  onChange={(e) => {
-                    setPrice(e.target.value);
-                  }}
-                  type="Number"
-                  placeholder="Price"
-                />
                 ` <Button onClick={registerRoom}>Add</Button>
               </ToggleRoom>
             ) : (
               <ToggleRoom2>
                 <HoldLabel>
-                  <input type="file" id="bg" onChange={uploadRoomImage} />
+                  <Input style={{
+                  width: "250px", 
+                  height: "40px",
+                  border: "1px solid #387EFF"
+                }} type="file" id="bg" onChange={uploadRoomImage} />
                   <Label htmlFor="bg">Upload Image</Label>
                 </HoldLabel>
-                <input placeholder="Enter Facility Name" />
-                <input placeholder="Price" />
-                <input placeholder="Short Description" />
+                <Input  style={{
+                  width: "250px", 
+                  height: "40px",
+                  border: "1px solid #387EFF"
+                }}placeholder="Enter Facility Name" />
+                <Input style={{
+                  width: "250px", 
+                  height: "40px",
+                  border: "1px solid #387EFF"
+                }} placeholder="Price" />
+                <Input style={{
+                  width: "250px", 
+                  height: "40px",
+                  border: "1px solid #387EFF"
+                }} placeholder="Short Description" />
+                
                 <Button onClick={registerFacility}>Add</Button>
               </ToggleRoom2>
             )}
@@ -229,13 +275,13 @@ const HoldLabel = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
-  input {
+  Input {
     display: none;
   }
 `;
 const Label = styled.label`
   padding: 10px;
-  background-color: #004080;
+  background-color: #387EFF;
   border-radius: 20px;
   display: flex;
   /* width: 100px; */
@@ -253,10 +299,10 @@ const ToggleRoom = styled.div`
   margin: -10px 0px;
 `;
 const Button3 = styled.div`
-  width: 150px;
+  width: 160px;
   height: 40px;
   margin: 0px 10px;
-  background-color: #004080;
+  background-color: #387EFF;
   color: white;
   /* margin-left: 130px;
         margin-top: 20px; */
@@ -293,7 +339,7 @@ const ButtonChange = styled.div`
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-image: url("/Images/pexels-pixabay-163864.jpg");
+  background: url("./Images/room.jpg");
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -315,6 +361,8 @@ const Card = styled.div`
   width: 60%;
   height: 70%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
@@ -322,19 +370,27 @@ const Card = styled.div`
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 
+ 
   @media screen and (max-width: 475px) and (min-width: 320px) {
     height: auto;
     width: 80%;
     flex-wrap: wrap;
   }
 `;
+
+const Input = styled.input`
+width: 200px;
+    height: 40px;
+    border: 1px solid #387EFF;
+    outline: #387EFF;
+`
 const LeftPart = styled.div`
-  width: 50%;
-  height: 100%;
+  width: 40%;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: #387EFF;
   background-blend-mode: overlay;
   border-radius: 10px 0 0 10px;
 
@@ -355,7 +411,7 @@ const RightPart = styled.div`
   flex-direction: column;
   padding: 20px;
 
-  input {
+  Input {
     width: 85%;
     height: 25px;
     border-radius: 3px;
@@ -401,7 +457,7 @@ const SmallWordS = styled.div`
 const Button = styled.div`
   width: 150px;
   height: 40px;
-  background-color: #004080;
+  background-color:  #387EFF ;
   color: white;
   margin-left: 100px;
   margin-top: 10px;

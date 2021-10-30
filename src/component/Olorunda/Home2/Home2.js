@@ -8,7 +8,7 @@ const Home2 = () => {
       <Wrapper>
         <TitleCatg>Categories</TitleCatg>
         <CateCard>
-          <CatogeryCard />
+          <CatogeryCard src="images/gff.jpg"/>
           <CatogeryCard />
           <CatogeryCard />
           <CatogeryCard />

@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import testImf from "../Images/hooot.jpg";
+import testImf1 from "../Images/hotp.png";
+import testImf2 from "../Images/luxx.jpg";
+import testImf3 from "../Images/gff.jpg";
+import testImf4 from "../Images/perm.jpg";
 
 const Home3 = () => {
   return (
@@ -12,13 +16,13 @@ const Home3 = () => {
             <CardOne src={testImf} alt="" />
           </FirstHold>
           <SecondHold>
-            <CardTwo src={testImf} alt="" />
-            <CardTwo src={testImf} alt="" />
+            <CardTwo src={testImf1} alt="" />
+            <CardTwo src={testImf2} alt="" />
           </SecondHold>
           <ThirdHold>
+            <CardThree src={testImf3} alt="" />
             <CardThree src={testImf} alt="" />
-            <CardThree src={testImf} alt="" />
-            <CardThree src={testImf} alt="" />
+            <CardThree src={testImf4} alt="" />
           </ThirdHold>
         </CardDisplay>
       </Wrapper>
