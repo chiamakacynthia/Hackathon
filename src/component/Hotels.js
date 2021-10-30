@@ -34,6 +34,25 @@ const Rooms = () => {
                    <Title>Hotel Collection</Title>
                   </Content>
 </Header>
+
+<Summ>
+                 <All> <Amount>All</Amount>
+                   
+                   <Amount>
+                       Ajegunle
+                    </Amount>
+                   
+                   <Amount>
+                        Apapa
+                    </Amount>
+                   
+                   <Amount>
+                        Festac
+                    </Amount></All>
+                   
+                 
+                </Summ>
+
 <Head>Verified Hotels</Head>
 <Room>
  
@@ -188,6 +207,7 @@ const Wrapper = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     @media (min-width: 320px) and (max-width: 1024px){
         display: flex;
         justify-content: center;
@@ -235,4 +255,34 @@ const Content = styled.div`
         margin-bottom: 20px;
     }
     }
+`
+const Amount = styled.div`
+font-size:15px;
+font-weight:bold;
+font-family: Georgia, 'Times New Roman', Times, serif;
+margin-left: 20px;
+display: flex;
+text-align: center;
+margin-bottom: 5px;
+
+`
+
+const All = styled.div`
+display: flex;
+align-items: center;
+justify-content: space-around;
+`
+
+const Summ = styled.div`
+margin-top: 10px;
+width: 300px;
+height: 70px;
+background-color:white;
+font-weight:bold;
+display: flex;
+align-items: center;
+justify-content: space-around;
+/* padding: 10px; */
+border-radius: 6px;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `

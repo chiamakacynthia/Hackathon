@@ -14,7 +14,6 @@ const Hero = () => {
           </Bounce>
         </HeroTitle>
         <HeroBtn>
-          <BtnDiv>Sign Up</BtnDiv>
           <BtnDiv>Book Now</BtnDiv>
         </HeroBtn>
       </Wrapper>
@@ -57,6 +56,7 @@ const HeroTitle = styled.div`
   font-size: 55px;
   color: #fff;
   text-align: center;
+  z-index: 1;
 `;
 const HeroBtn = styled.div`
   max-width: 280px;

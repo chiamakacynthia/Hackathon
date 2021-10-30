@@ -1,11 +1,22 @@
-import React from "react";
+import React,{ useState} from "react";
 import styled from "styled-components";
 import img from "../Images/logo3.png"
 import { AiOutlineHome, AiFillBook } from "react-icons/ai";
 import { RiHotelFill } from "react-icons/ri";
 import {Link} from "react-router-dom"
+import SideBar from './SideBar'
+import Fade from 'react-reveal/Fade';
+import {HiMenuAlt1} from "react-icons/hi"
+import {GiCancel} from "react-icons/gi"
 
 const Header = () => {
+
+  const [toggle, setToggle] = useState(false)
+
+  const onToggle = ()=>{
+      setToggle(!toggle)
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -38,7 +49,20 @@ const Header = () => {
             <span>Login</span>
           </Nav> */}
         </UserDiv>
+
+        <MyMenu>
+   {toggle ? (
+         <Cancel onClick={onToggle}/>
+       ) :(
+        <MenuIcon onClick={onToggle}/>
+       )}
+</MyMenu>
+
       </Wrapper>
+      <Fade right when={toggle}>
+          <SideBar />
+        </Fade>
+
     </Container>
   );
 };
@@ -53,6 +77,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+padding-top:10px;
   
 `;
 const Wrapper = styled.div`
@@ -73,7 +98,11 @@ const NavDiv = styled.div`
   display: flex;
   width: 420px;
   justify-content: space-between;
-  /* background-color: chocolate; */
+
+
+@media screen and (max-width:800px){
+display: none;
+}
 `;
 const Nav = styled(Link)`
   width: 100px;
@@ -104,3 +133,33 @@ const Icon = styled.div`
 `;
 
 const UserDiv = styled.div``;
+
+
+const MyMenu = styled.div`
+width: 100px;
+height: 40px;
+font-size: 20px;
+    font-weight: bold;
+    font-family: poppins;
+display: flex;
+align-items: center;
+border-radius: 5px;
+justify-content: center;
+cursor: pointer;
+color:#004080;
+
+
+@media screen and (min-width: 799px){
+    display: none
+}
+`
+
+const MenuIcon= styled(HiMenuAlt1)`
+font-size: 40px;
+font-weight: bold;
+`
+const Cancel= styled(GiCancel)`
+font-size: 40px;
+font-weight: bold;
+`
+

@@ -16,7 +16,23 @@ const Booking = () => {
     return(
         <Container>
             <Wrapper>
-                {
+
+            <Summ>
+                    Summary
+                   <H>
+                   <Amount>
+                        <span>Amount:</span>
+                        <span>50,000</span>
+                    </Amount>
+                    <Troom>
+                    <span>Total Rooms:</span>
+                        <span>2</span>
+                    </Troom>
+                   </H>
+                </Summ>
+
+                
+               <Top> {
                     showBooking.map((props, i) => (
                  <Card key={i}>  
                     <ImageTop src={props.roomImage}/>
@@ -55,12 +71,63 @@ const Booking = () => {
                 </Card>
                     ))
                 }
+                </Top>
+
+
+              
             </Wrapper>
         </Container>
     )
 }
 
 export default Booking
+
+const Summ = styled.div`
+width: 300px;
+height: 100px;
+background-color:white;
+font-weight:bold;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+padding: 5px;
+border-radius: 6px;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+`
+
+const H = styled.div`
+display: flex;
+justify-content: space-between;
+`
+
+const Amount = styled.div`
+font-size:15px;
+font-weight:bold;
+font-family: Georgia, 'Times New Roman', Times, serif;
+margin-left: 20px;
+display: flex;
+flex-direction: column;
+text-align: center;
+margin-bottom: 5px;
+
+`
+const Troom = styled.div`
+font-size:15px;
+text-align: center;
+font-weight:bold;
+font-family: Georgia, 'Times New Roman', Times, serif;
+margin-left: 20px;
+display: flex;
+flex-direction: column;
+margin-bottom: 5px;
+
+`
+const Top = styled.div`
+width: 100%;
+height: 70%;
+`
+
 
 const Category1 = styled.div`
      width: 80%;
@@ -254,6 +321,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     @media screen and (max-width: 475px) and (min-width: 320px){
           flex-direction: column;   
@@ -262,10 +330,11 @@ const Wrapper = styled.div`
 
 const ImageTop = styled.img`
 width: 280px;
-height: 250px;
+height: 230px;
 background-color:blue;
 object-fit:cover;
 border-radius: 5px;
+border-radius:10px 10px  0 0 ;
 
 
 
@@ -283,7 +352,7 @@ width: 280px;
 min-height:450px;
 margin-top: 20px;
 margin: 20px;
-border-radius: 5px;
+border-radius: 10px;
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 background-color: white;
 :after{
